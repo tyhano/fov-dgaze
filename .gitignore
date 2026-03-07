@@ -25,3 +25,14 @@
 /projects/**/UserSettings/*
 /projects/**/obj/*
 *.sln.DotSettings.user
+
+# Python/DGaze local env & outputs
+DGaze/**/venv/
+DGaze/**/__pycache__/
+DGaze/**/.pytest_cache/
+DGaze/**/predictions/
+DGaze/**/checkpoint/
+DGaze/**/checkpoints/
+DGaze/**/runs/
+DGaze/**/.ipynb_checkpoints/
+

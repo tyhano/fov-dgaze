@@ -74,15 +74,21 @@ namespace GaussianSplatting.Runtime
         {
             if (cam.cameraType == CameraType.Preview)
                 return false;
-            // gather all active & valid splat objects
+
             m_ActiveSplats.Clear();
             foreach (var kvp in m_Splats)
             {
                 var gs = kvp.Key;
                 if (gs == null || !gs.isActiveAndEnabled || !gs.HasValidAsset || !gs.HasValidRenderSetup)
                     continue;
+
+                // 新增：如果指定了目标相机，那么只在这个相机里渲染
+                if (gs.m_TargetCamera != null && gs.m_TargetCamera != cam)
+                    continue;
+
                 m_ActiveSplats.Add((kvp.Key, kvp.Value));
             }
+
             if (m_ActiveSplats.Count == 0)
                 return false;
 
@@ -226,6 +232,9 @@ namespace GaussianSplatting.Runtime
 
         [Tooltip("Rendering order compared to other splats. Within same order splats are sorted by distance. Higher order splats render 'on top of' lower order splats.")]
         public int m_RenderOrder;
+        [Header("Camera Filter")]
+        [Tooltip("If assigned, this splat will render only for this Unity Camera.")]
+        public Camera m_TargetCamera;
         [Range(0.1f, 2.0f)] [Tooltip("Additional scaling factor for the splats")]
         public float m_SplatScale = 1.0f;
         [Range(0.05f, 20.0f)]

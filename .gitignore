@@ -36,3 +36,19 @@ DGaze/**/checkpoints/
 DGaze/**/runs/
 DGaze/**/.ipynb_checkpoints/
 
+
+# IDE
+.idea/
+.vscode/
+
+# Python venv & caches
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ipynb_checkpoints/
+
+# DGaze generated outputs
+DGaze/**/predictions/
+DGaze/**/checkpoint*/
+DGaze/**/runs/
+

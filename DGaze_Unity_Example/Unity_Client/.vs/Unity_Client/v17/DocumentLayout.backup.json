@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|d:\\tyh\\paperdata\\dgaze\\dgaze_unity_example\\unity_client\\assets\\scripts\\datarecorder_dgaze_et.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\datarecorder_dgaze_et.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\assets\\scripts\\client_dgaze_et.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\client_dgaze_et.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\assets\\scripts\\requester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39AB0C2E-3A72-220D-C918-848998D211BB}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\requester.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Requester.cs",
+              "DocumentMoniker": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\Requester.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Requester.cs",
+              "ToolTip": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\Requester.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Requester.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAwC4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T06:38:54.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Client_DGaze_ET.cs",
+              "DocumentMoniker": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\Client_DGaze_ET.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Client_DGaze_ET.cs",
+              "ToolTip": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\Client_DGaze_ET.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Client_DGaze_ET.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAUwE0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T06:36:41.372Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataRecorder_DGaze_ET.cs",
+              "DocumentMoniker": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\DataRecorder_DGaze_ET.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DataRecorder_DGaze_ET.cs",
+              "ToolTip": "D:\\TYH\\paperdata\\DGaze\\DGaze_Unity_Example\\Unity_Client\\Assets\\Scripts\\DataRecorder_DGaze_ET.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DataRecorder_DGaze_ET.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAuwI0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-07T06:33:04.981Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

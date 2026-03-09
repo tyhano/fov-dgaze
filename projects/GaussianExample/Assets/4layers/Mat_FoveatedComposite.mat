@@ -101,9 +101,12 @@ Material:
     - _StartBlend: 0.3
     - _TintStrength: 0.1
     - _UVSec: 0
+    - _UsePredictedUnion: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GazeUV: {r: 0.51938176, g: 1, b: 0, a: 0}
+    - _GazeUV: {r: 0.50431365, g: 1, b: 0, a: 0}
+    - _GazeUVCurrent: {r: 0.50431365, g: 1, b: 0, a: 0}
+    - _GazeUVPred: {r: 0.47779325, g: 0.92557794, b: 0, a: 0}
   m_BuildTextureStacks: []

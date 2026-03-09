@@ -7,6 +7,10 @@ public class FoveatedCompositeBlit : MonoBehaviour
     public RigMouseLookModeController rigController;
     public bool flipY = false;
 
+    [Header("Gaze Inputs")]
+    public bool usePredictedUnion = true;
+    public bool fallbackPredictedToCurrent = true;
+
     [Header("Continuous Level Params")]
     public float maxRadius = 0.48f;
     public float levelGamma = 2.2f;
@@ -32,6 +36,8 @@ public class FoveatedCompositeBlit : MonoBehaviour
         if (rigController != null)
             observeMode = rigController.IsObserveMode;
 
+        GazeDebugState.GetSnapshot(out Vector2 currentGaze, out Vector2 predictedGaze, out bool hasPredicted);
+
         if (observeMode)
         {
             cachedGazeUV = new Vector2(
@@ -39,13 +45,28 @@ public class FoveatedCompositeBlit : MonoBehaviour
                 Mathf.Clamp01(Input.mousePosition.y / Screen.height)
             );
         }
+        else
+        {
+            cachedGazeUV = currentGaze;
+        }
 
-        Vector2 gazeUV = cachedGazeUV;
+        Vector2 gazeCurrentUV = cachedGazeUV;
+        Vector2 gazePredUV = predictedGaze;
+
+        if (!hasPredicted && fallbackPredictedToCurrent)
+            gazePredUV = gazeCurrentUV;
 
         if (flipY)
-            gazeUV.y = 1.0f - gazeUV.y;
+        {
+            gazeCurrentUV.y = 1.0f - gazeCurrentUV.y;
+            gazePredUV.y = 1.0f - gazePredUV.y;
+        }
 
-        compositeMat.SetVector("_GazeUV", new Vector4(gazeUV.x, gazeUV.y, 0, 0));
+        // Keep _GazeUV for backward compatibility/debug tooling that still reads it.
+        compositeMat.SetVector("_GazeUV", new Vector4(gazeCurrentUV.x, gazeCurrentUV.y, 0, 0));
+        compositeMat.SetVector("_GazeUVCurrent", new Vector4(gazeCurrentUV.x, gazeCurrentUV.y, 0, 0));
+        compositeMat.SetVector("_GazeUVPred", new Vector4(gazePredUV.x, gazePredUV.y, 0, 0));
+        compositeMat.SetFloat("_UsePredictedUnion", usePredictedUnion && hasPredicted ? 1f : 0f);
         compositeMat.SetFloat("_MaxRadius", maxRadius);
         compositeMat.SetFloat("_LevelGamma", levelGamma);
         compositeMat.SetFloat("_StartBlend", startBlend);

@@ -1,4 +1,4 @@
-Shader "Unlit/FoveatedCompositeContinuous"
+ï»¿Shader "Unlit/FoveatedCompositeContinuous"
 {
     Properties
     {
@@ -8,12 +8,15 @@ Shader "Unlit/FoveatedCompositeContinuous"
         _Tex3 ("Layer3", 2D) = "black" {}
 
         _GazeUV ("GazeUV", Vector) = (0.5,0.5,0,0)
+        _GazeUVCurrent ("Current Gaze UV", Vector) = (0.5,0.5,0,0)
+        _GazeUVPred ("Predicted Gaze UV", Vector) = (0.5,0.5,0,0)
+        _UsePredictedUnion ("Use Predicted Union", Float) = 0
 
-        // Á¬Ğø²ã¼¶¿ØÖÆ
+        // ã¼¶
         _MaxRadius ("Max Radius", Float) = 0.45
         _LevelGamma ("Level Gamma", Float) = 2.0
 
-        // »ìºÏ´ø¿ØÖÆ
+        // Ï´
         _StartBlend ("Start Blend", Range(0,1)) = 0.35
         _BlendWidth ("Blend Width", Range(0.001,1)) = 0.30
 
@@ -35,6 +38,9 @@ Shader "Unlit/FoveatedCompositeContinuous"
 
             sampler2D _Tex0, _Tex1, _Tex2, _Tex3;
             float4 _GazeUV;
+            float4 _GazeUVCurrent;
+            float4 _GazeUVPred;
+            float _UsePredictedUnion;
 
             float _MaxRadius;
             float _LevelGamma;
@@ -80,33 +86,45 @@ Shader "Unlit/FoveatedCompositeContinuous"
                 return tex2D(_Tex3, uv);
             }
 
+            float ComputeLevel(float2 uv, float2 gazeUv)
+            {
+                float d = distance(uv, gazeUv);
+                float dn = saturate(d / max(_MaxRadius, 1e-5));
+                float level = pow(dn, _LevelGamma) * 4.0;
+                return clamp(level, 0.0, 3.999);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv;
-                float d = distance(uv, _GazeUV.xy);
 
-                // ¹éÒ»»¯¾àÀë£ºÖĞĞÄ 0£¬ÍâÈ¦½Ó½ü 1
-                float dn = saturate(d / max(_MaxRadius, 1e-5));
+                // Fallback to legacy _GazeUV if new properties are not set by an old scene/material.
+                float2 currentGaze = _GazeUVCurrent.xy;
+                if (all(currentGaze == 0))
+                    currentGaze = _GazeUV.xy;
 
-                // Á¬Ğø level£º0 ~ 3
-                // gamma > 1 »áÈÃÖĞĞÄ¸ßÖÊÁ¿Çø¸ü´óÒ»Ğ©£¬ÀàËÆ¸ü¡°¾Û½¹¡±
-                float level = pow(dn, _LevelGamma) * 4.0;
-                level = clamp(level, 0.0, 3.999);
+                float levelCurrent = ComputeLevel(uv, currentGaze);
+                float levelPred = ComputeLevel(uv, _GazeUVPred.xy);
+
+                // Union for high-quality regions: lower level == higher quality, so union => min.
+                float level = levelCurrent;
+                if (_UsePredictedUnion > 0.5)
+                    level = min(levelCurrent, levelPred);
 
                 int baseLevel = (int)floor(level);
                 if (baseLevel < 0) baseLevel = 0;
                 if (baseLevel > 3) baseLevel = 3;
 
-int nextLevel = min(baseLevel + 1, 3);
+                int nextLevel = min(baseLevel + 1, 3);
 
                 float fracPart = level - (float)baseLevel;
 
-                // Ä£·Â¹Ù·½Âß¼­£º
+                // Ä£Â¹Ù·ß¼
                 // x = (frac - startBlend) / blendWidth
                 float x = (fracPart - _StartBlend) / max(_BlendWidth, 1e-5);
                 x = saturate(x);
 
-                // ¹Ù·½Í¬¿î·ç¸ñµÄÆ½»¬º¯Êı£º3x^2 - 2x^3
+                // Ù·Í¬Æ½3x^2 - 2x^3
                 float blendT = 3.0 * x * x - 2.0 * x * x * x;
 
                 float wBase = 1.0 - blendT;
@@ -119,7 +137,7 @@ int nextLevel = min(baseLevel + 1, 3);
 
                 if (_DebugTint > 0.5)
                 {
-                    // µ÷ÊÔÊ±¸øÖ÷²ãÉÏÉ«
+                    // Ê±É«
                     float3 tint = LayerTint(baseLevel);
                     col.rgb = lerp(col.rgb, tint, _TintStrength);
                 }

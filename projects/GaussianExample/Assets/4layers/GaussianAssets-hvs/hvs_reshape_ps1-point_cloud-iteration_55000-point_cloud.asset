@@ -23,10 +23,10 @@ MonoBehaviour:
   m_ScaleFormat: 0
   m_SHFormat: 0
   m_ColorFormat: 0
-  m_PosData: {fileID: 4900000, guid: 9c9e72c94fa783c44b30796a49f948a8, type: 3}
-  m_ColorData: {fileID: 4900000, guid: a1b9eb86792ebc140a31d98965bc949a, type: 3}
-  m_OtherData: {fileID: 4900000, guid: 0cd90b8add3dcf5478ee169077c9e4f1, type: 3}
-  m_SHData: {fileID: 4900000, guid: 039ca7f22a48d3645a380624a1fbd975, type: 3}
+  m_PosData: {fileID: 4900000, guid: 421fe65af07780b4f9892a8a6942c0fb, type: 3}
+  m_ColorData: {fileID: 4900000, guid: 1d0317c64d1628e4eb6aeb4364e9d524, type: 3}
+  m_OtherData: {fileID: 4900000, guid: 9b251c4da40379d4abc86c6a46ef8611, type: 3}
+  m_SHData: {fileID: 4900000, guid: 161b62b161254c34588af3a497461862, type: 3}
   m_ChunkData: {fileID: 0}
   m_Cameras:
   - pos: {x: -3.0026817, y: 1.4007727, z: -2.2284005}

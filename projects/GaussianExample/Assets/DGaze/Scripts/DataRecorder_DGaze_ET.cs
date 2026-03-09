@@ -25,7 +25,6 @@ public class DataRecorder_DGaze_ET : MonoBehaviour
         recordingsString = null;
         Running = true;
         StartCoroutine(RecordData());
-
     }
 
 

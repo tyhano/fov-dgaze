@@ -19,7 +19,7 @@ dropout_rate = 0.5
 inputSize = seqLength*seqFeatureNum
 
 # path to a pre-trained model of predicting gaze in the future 100 ms.
-modelPath = './checkpoint/DGaze_100_GazeHeadObject/checkpoint_epoch_030.tar'
+modelPath = './checkpoint/DGaze_100_GazeHeadObject/checkpoint_epoch_025.tar'
 
 
 # Device configuration
